@@ -1,0 +1,4 @@
+import type {MetadataRoute} from 'next';
+import {configured,serverClient} from '@/lib/supabase/server';
+export const dynamic='force-dynamic';
+export default async function manifest():Promise<MetadataRoute.Manifest>{let name='Crease Booking POS';if(configured()){try{const db=await serverClient();const {data}=await db.from('club_settings').select('name').single();if(data)name=data.name;}catch{}}return {id:'/',name,short_name:name.slice(0,12),description:'Ground scheduling and booking management',start_url:'/',scope:'/',display:'standalone',background_color:'#101a18',theme_color:'#101a18',icons:[{src:'/icons/icon-192.png',sizes:'192x192',type:'image/png',purpose:'any'},{src:'/icons/icon-512.png',sizes:'512x512',type:'image/png',purpose:'any'},{src:'/icons/maskable-512.png',sizes:'512x512',type:'image/png',purpose:'maskable'}]};}

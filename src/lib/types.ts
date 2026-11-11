@@ -1,0 +1,9 @@
+export type Settings = {id:boolean;name:string;description:string;phone:string;whatsapp:string;address:string;logo_url:string;receipt_note:string;currency:string;timezone:string;accent:string};
+export type Ground = {id:string;name:string;description:string;active:boolean;hourly_rate:number};
+export type Hours = {id:string;ground_id:string;weekday:number;opens:number;closes:number};
+export type Rule = {id:string;ground_id:string;name:string;weekday:number;starts:number;ends:number;hourly_rate:number};
+export type Customer = {id:string;name:string;phone:string|null;notes:string;created_at:string};
+export type Reservation = {id:string;ground_id:string;kind:'booking'|'block';customer_id:string|null;starts_at:string;ends_at:string;status:'confirmed'|'completed'|'cancelled'|'no-show';quoted_price:number;total_price:number;price_reason:string;hours_override_reason:string;notes:string;cancellation_handling:'retain'|'refund'|null;refund_due:number;version:number;created_at:string};
+export type Payment = {id:string;booking_id:string;kind:'payment'|'refund';amount:number;method:'cash'|'bank'|'other';note:string;created_at:string};
+export type State = {settings:Settings;grounds:Ground[];hours:Hours[];rules:Rule[];customers:Customer[];reservations:Reservation[];payments:Payment[]};
+export type Quote = {total:number;parts:{start:string;rate:number;amount:number;label:string}[]};
